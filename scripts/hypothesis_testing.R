@@ -9,16 +9,11 @@ monthlyCount = nrow(data[data$On.average..how.often.do.you.use.Mobile.Banking.Ap
 hardlyCount = nrow(data[data$On.average..how.often.do.you.use.Mobile.Banking.Apps.in.your.smartphone. == 'Hardly',])
 
 category_count = 5
-
 exp_val_for_each_cat = sample_size/category_count
-exp_val_for_each_cat
-
-
 e = exp_val_for_each_cat
 
-((e-dailyCount)^2 + (e-weeklyCount)^2 + (e-sevTiMonthCount)^2 + (e-monthlyCount)^2 + (e-hardlyCount)^2)/e
-
+chiSqrd = ((e-dailyCount)^2 + (e-weeklyCount)^2 + (e-sevTiMonthCount)^2 + (e-monthlyCount)^2 + (e-hardlyCount)^2)/e
+pchisq(chiSqrd, category_count-1)
 
 category_count_vec <- c(dailyCount, weeklyCount, sevTiMonthCount, monthlyCount, hardlyCount)
-
 chisq.test(category_count_vec)
